@@ -1408,7 +1408,7 @@ SupportPaletteSnoopAttributes (
   )
 {
   PCI_IO_DEVICE  *Temp;
-  UINT16         VGACommand;
+  UINT16         VGACommand = 0u;
 
   //
   // Snoop attribute can be only modified by GFX

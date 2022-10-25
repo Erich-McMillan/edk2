@@ -440,22 +440,19 @@ ShellCommandRunDrvDiag (
 
     if (DriverHandleStr == NULL) {
       Handle1 = NULL;
-    } else {
-      ShellConvertStringToUint64 (DriverHandleStr, &Intermediate, TRUE, FALSE);
+    } else if (ShellConvertStringToUint64 (DriverHandleStr, &Intermediate, TRUE, FALSE)) {
       Handle1 = ConvertHandleIndexToHandle ((UINTN)Intermediate);
     }
 
     if (ControllerHandleStr == NULL) {
       Handle2 = NULL;
-    } else {
-      ShellConvertStringToUint64 (ControllerHandleStr, &Intermediate, TRUE, FALSE);
+    } else if (ShellConvertStringToUint64 (ControllerHandleStr, &Intermediate, TRUE, FALSE)) {
       Handle2 = ConvertHandleIndexToHandle ((UINTN)Intermediate);
     }
 
     if (ChildHandleStr == NULL) {
       Handle3 = NULL;
-    } else {
-      ShellConvertStringToUint64 (ChildHandleStr, &Intermediate, TRUE, FALSE);
+    } else if (ShellConvertStringToUint64 (ChildHandleStr, &Intermediate, TRUE, FALSE)) {
       Handle3 = ConvertHandleIndexToHandle ((UINTN)Intermediate);
     }
 

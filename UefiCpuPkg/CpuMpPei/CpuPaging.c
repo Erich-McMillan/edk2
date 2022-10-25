@@ -535,7 +535,7 @@ SetupStackGuardPage (
 {
   EFI_PEI_HOB_POINTERS  Hob;
   EFI_PHYSICAL_ADDRESS  StackBase;
-  UINTN                 NumberOfProcessors;
+  UINTN                 NumberOfProcessors = 0u;
   UINTN                 Bsp;
   UINTN                 Index;
 

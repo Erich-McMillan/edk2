@@ -509,8 +509,9 @@ ShellCommandRunConnect (
 
       if (Param1 != NULL) {
         Status  = ShellConvertStringToUint64 (Param1, &Intermediate, TRUE, FALSE);
-        Handle1 = ConvertHandleIndexToHandle ((UINTN)Intermediate);
-        if (EFI_ERROR (Status)) {
+        if (!EFI_ERROR (Status)) {
+          Handle1 = ConvertHandleIndexToHandle ((UINTN)Intermediate);
+        } else {
           ShellPrintHiiEx (-1, -1, NULL, STRING_TOKEN (STR_GEN_INV_HANDLE), gShellDriver1HiiHandle, L"connect", Param1);
           ShellStatus = SHELL_INVALID_PARAMETER;
         }
@@ -520,8 +521,10 @@ ShellCommandRunConnect (
 
       if (Param2 != NULL) {
         Status  = ShellConvertStringToUint64 (Param2, &Intermediate, TRUE, FALSE);
-        Handle2 = ConvertHandleIndexToHandle ((UINTN)Intermediate);
-        if (EFI_ERROR (Status)) {
+        if (!EFI_ERROR (Status)) {
+          Handle2 = ConvertHandleIndexToHandle ((UINTN)Intermediate);
+        }
+        else {
           ShellPrintHiiEx (-1, -1, NULL, STRING_TOKEN (STR_GEN_INV_HANDLE), gShellDriver1HiiHandle, L"connect", Param2);
           ShellStatus = SHELL_INVALID_PARAMETER;
         }

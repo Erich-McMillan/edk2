@@ -1786,12 +1786,14 @@ HiiStringToImage (
       Foreground  = ((EFI_FONT_DISPLAY_INFO *)StringInfo)->ForegroundColor;
       Background  = ((EFI_FONT_DISPLAY_INFO *)StringInfo)->BackgroundColor;
     } else if (Status == EFI_SUCCESS) {
-      FontInfo = &StringInfoOut->FontInfo;
-      IsFontInfoExisted (Private, FontInfo, NULL, NULL, &GlobalFont);
-      Height     = GlobalFont->FontPackage->Height;
-      BaseLine   = GlobalFont->FontPackage->BaseLine;
-      Foreground = StringInfoOut->ForegroundColor;
-      Background = StringInfoOut->BackgroundColor;
+      Status = IsFontInfoExisted (Private, FontInfo, NULL, NULL, &GlobalFont);
+      if (Status == EFI_SUCCESS) {
+        FontInfo = &StringInfoOut->FontInfo;
+        Height     = GlobalFont->FontPackage->Height;
+        BaseLine   = GlobalFont->FontPackage->BaseLine;
+        Foreground = StringInfoOut->ForegroundColor;
+        Background = StringInfoOut->BackgroundColor;
+      }
     } else {
       goto Exit;
     }

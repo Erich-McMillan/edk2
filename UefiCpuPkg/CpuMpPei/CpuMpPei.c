@@ -463,7 +463,7 @@ InitializeMpExceptionStackSwitchHandlers (
   )
 {
   UINTN                           Index;
-  UINTN                           NumberOfProcessors;
+  UINTN                           NumberOfProcessors = 0u;
   EXCEPTION_STACK_SWITCH_CONTEXT  *SwitchStackData;
   UINTN                           BufferSize;
   EFI_STATUS                      Status;

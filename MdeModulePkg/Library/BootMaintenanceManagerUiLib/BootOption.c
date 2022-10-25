@@ -909,6 +909,7 @@ BootFromFile (
   IN EFI_DEVICE_PATH_PROTOCOL  *FilePath
   )
 {
+  EFI_STATUS                    Status = EFI_NOT_STARTED;
   EFI_BOOT_MANAGER_LOAD_OPTION  BootOption;
   CHAR16                        *FileName;
 
@@ -916,7 +917,7 @@ BootFromFile (
 
   FileName = ExtractFileNameFromDevicePath (FilePath);
   if (FileName != NULL) {
-    EfiBootManagerInitializeLoadOption (
+    Status = EfiBootManagerInitializeLoadOption (
       &BootOption,
       0,
       LoadOptionTypeBoot,
@@ -926,6 +927,9 @@ BootFromFile (
       NULL,
       0
       );
+  }
+  if (!EFI_ERROR(Status))
+  {
     //
     // Since current no boot from removable media directly is allowed */
     //

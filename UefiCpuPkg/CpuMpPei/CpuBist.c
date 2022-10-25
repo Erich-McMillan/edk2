@@ -169,7 +169,7 @@ CollectBistDataFromPpi (
   UINTN                                 CpuIndex;
   EFI_PROCESSOR_INFORMATION             ProcessorInfo;
   EFI_HEALTH_FLAGS                      BistData;
-  UINTN                                 NumberOfProcessors;
+  UINTN                                 NumberOfProcessors = 0u;
   UINTN                                 NumberOfEnabledProcessors;
   UINTN                                 BistInformationSize;
   EFI_SEC_PLATFORM_INFORMATION_RECORD2  *PlatformInformationRecord2;

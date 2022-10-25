@@ -1567,8 +1567,8 @@ TcpIcmpInput (
   TCP_CB      *Tcb;
   TCP_SEQNO   Seq;
   EFI_STATUS  IcmpErrStatus;
-  BOOLEAN     IcmpErrIsHard;
-  BOOLEAN     IcmpErrNotify;
+  BOOLEAN     IcmpErrIsHard = FALSE;
+  BOOLEAN     IcmpErrNotify = FALSE;
 
   if (Nbuf->TotalSize < sizeof (TCP_HEAD)) {
     goto CLEAN_EXIT;

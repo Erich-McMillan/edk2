@@ -27,6 +27,7 @@
 #include <Library/PcdLib.h>
 #include <Library/PlatformFvbLib.h>
 #include "Fvb.h"
+#include "FvbCov.h"
 
 #define EFI_AUTHENTICATED_VARIABLE_GUID \
 { 0xaaf32c78, 0x947b, 0x439a, { 0xa1, 0x80, 0x2e, 0x14, 0x4e, 0xc3, 0x77, 0x92 } }
@@ -841,5 +842,15 @@ FvbInitialize (
                   );
   ASSERT_EFI_ERROR (Status);
 
+  return EFI_SUCCESS;
+}
+
+EFI_STATUS
+EFIAPI
+FvbDeinitialize (
+  IN EFI_HANDLE  ImageHandle
+  )
+{
+  dump_gcov_info();
   return EFI_SUCCESS;
 }

@@ -143,6 +143,7 @@ LocatePciExpressCapabilityRegBlock (
 #define PCI_READ_COMMAND_REGISTER(a, b) \
         PciOperateRegister (a, 0, PCI_COMMAND_OFFSET, EFI_GET_REGISTER, b)
 
+
 /**
   Macro that writes command register.
 

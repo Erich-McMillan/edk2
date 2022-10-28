@@ -15,6 +15,7 @@
   MODULE_TYPE                    = DXE_RUNTIME_DRIVER
   VERSION_STRING                 = 1.0
   ENTRY_POINT                    = FvbInitialize
+  UNLOAD_IMAGE                   = FvbDeinitialize # definitely need a callback instead
 
 #
 # The following information is for reference only and not required by the build tools.
@@ -25,6 +26,8 @@
 [Sources]
   Fvb.c
   Fvb.h
+  FvbCov.h
+  FvbCov.c
 
 [Packages]
   MdePkg/MdePkg.dec
@@ -66,3 +69,6 @@
 [Depex]
   TRUE
 
+[BuildOptions]
+  GCC:*_*_*_DLINK_FLAGS = -fprofile-arcs -ftest-coverage -fprofile-info-section
+  GCC:*_*_*_CC_FLAGS = -coverage

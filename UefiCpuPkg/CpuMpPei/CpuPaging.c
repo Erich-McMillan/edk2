@@ -535,9 +535,10 @@ SetupStackGuardPage (
 {
   EFI_PEI_HOB_POINTERS  Hob;
   EFI_PHYSICAL_ADDRESS  StackBase;
-  UINTN                 NumberOfProcessors = 0u;
+  UINTN                 NumberOfProcessors;
   UINTN                 Bsp;
   UINTN                 Index;
+  EFI_STATUS            Status;
 
   //
   // One extra page at the bottom of the stack is needed for Guard page.
@@ -547,7 +548,12 @@ SetupStackGuardPage (
     ASSERT (FALSE);
   }
 
-  MpInitLibGetNumberOfProcessors (&NumberOfProcessors, NULL);
+  Status = MpInitLibGetNumberOfProcessors (&NumberOfProcessors, NULL);
+
+  if (EFI_ERROR(Status)) {
+    NumberOfProcessors = 1u;
+  }
+
   MpInitLibWhoAmI (&Bsp);
   for (Index = 0; Index < NumberOfProcessors; ++Index) {
     StackBase = 0;

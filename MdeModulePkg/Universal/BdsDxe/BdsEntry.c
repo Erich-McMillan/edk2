@@ -1109,11 +1109,13 @@ BdsEntry (
       //
       // When platform recovery is not enabled, still boot to platform default file path.
       //
-      Status = EfiBootManagerProcessLoadOption (&PlatformDefaultBootOption);
+      PlatformDefaultBootOptionValid = EfiBootManagerProcessLoadOption (&PlatformDefaultBootOption) == EFI_SUCCESS;
     }
   }
 
-  EfiBootManagerFreeLoadOption (&PlatformDefaultBootOption);
+  if (PlatformDefaultBootOptionValid) {
+    EfiBootManagerFreeLoadOption (&PlatformDefaultBootOption);
+  }
 
   DEBUG ((DEBUG_ERROR, "[Bds] Unable to boot!\n"));
   PlatformBootManagerUnableToBoot ();
